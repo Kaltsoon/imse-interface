@@ -1,0 +1,19 @@
+<div id="search-header">
+	<div class="wrapper">
+		<div id="imse-title" class="pull-left">IMSE</div>
+
+		<button class="pull-right btn-blue" ng-click="choose_palette()">
+            <i class="fa fa-paint-brush"></i> Choose this palette
+        </button>
+	</div>
+</div>
+
+<div id="color-palette-container">
+	<div class="color-container" ng-repeat="color in colors | limitTo: palette_size" ng-class="{ 'selected': color.selected }" palette-item color="{{color.hex}}" ng-click="toggle_selection(color)">
+		<i class="fa fa-check"></i>
+	</div>
+</div>
+
+<div id="load-more-colors">
+	<button class="btn-blue" ng-click="increase_palette_size()" ng-disabled="palette_size >= colors.length"><i class="fa fa-plus"></i> Load more colors</button>
+</div>

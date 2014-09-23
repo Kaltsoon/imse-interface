@@ -1,0 +1,33 @@
+<div id="search-header">
+	<div class="wrapper">
+		<div id="imse-title" class="pull-left">IMSE</div>
+
+		<button class="pull-right btn-blue" ng-click="next()">
+            Next <i class="fa fa-chevron-right"></i>
+        </button>
+
+        <div class="pull-right text-muted" id="iteration-counter">{{iteration}}. iteration</div>
+
+        <div id="color-palette-thumbs-container" class="pull-right" ng-show="palette.length > 0">
+            <div id="color-palette-thumbs-title" class="pull-left text-muted">Your palette:</div>
+            <div class="color-thumb pull-left" ng-style="{ 'background-color': color.hex }" ng-repeat="color in palette | limitTo: 10"></div>
+            <div id="color-palette-thumbs-ellipsis" class="pull-left text-muted" ng-show="palette.length > 10">...</div>
+        </div>
+	</div>
+</div>
+
+<div masonry preserve-order id="result-container">
+    <div class="masonry-brick result-image" ng-repeat="result in results">
+    	<div style="width: 95%">
+            <img ng-src="{{ result.src }}" alt="A masonry brick">
+            
+            <div class="result-image-importance-wrapper">
+                <div class="result-image-importance-value" ng-class="{ 'green': result.importance >= 8, 'yellow': result.importance >= 4 && result.importance < 8, 'red': result.importance < 4 }">{{result.importance}}</div>
+            </div>
+            
+            <div class="result-image-importance">
+            	<div ui-slider="{min: 0, max: 10, range: 'min'}" ng-model="result.importance"></div>
+            </div>
+    	</div>
+    </div>
+</div masonry>
