@@ -1,4 +1,10 @@
 #Imse
 
-For development run: 
+##Launch
+
+Open <code>index.html</code>. Locally works only on Firefox, but when on a server environment also on other browser. 
+
+##Development
+
+Start by running 
 <pre>npm install</pre>
