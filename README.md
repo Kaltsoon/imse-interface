@@ -2,7 +2,7 @@
 
 ##Launch
 
-Open <code>index.html</code>. Locally works only on Firefox, but when on a server environment also on other browser. 
+Open <code>index.html</code>. Locally works only on Firefox, but when on a server environment also on other browsers. 
 
 ##Development
 
