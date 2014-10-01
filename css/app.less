@@ -1,9 +1,20 @@
-@import url(http://fonts.googleapis.com/css?family=Lato);
+@font-face {
+    font-family: 'Roboto';
+    src: url('roboto/Roboto-Regular-webfont.eot');
+    src: url('roboto/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('roboto/Roboto-Regular-webfont.woff') format('woff'),
+         url('roboto/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('roboto/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 @blue: #0096DD;
 @green: #81BC2E;
 @red: #C1423D;
 @yellow: #FFBF00;
+
+@header_top_offset: 5px;
 
 .background-gradient(@start, @stop) {
 	background: mix(@start, @stop, 50%);
@@ -47,7 +58,7 @@
 
 body{
 	background-color: rgb(240,240,240);
-	font-family: 'Lato', sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 .btn-blue{
@@ -97,11 +108,20 @@ body{
 	left: 0px;
 	width: 100%;
 	z-index: 99;
+
+	.top-offset{
+		position: relative;
+		top: @header_top_offset;
+	}
+}
+
+#welcome{
+	margin-right: 15px;
 }
 
 #iteration-counter{
 	position: relative;
-	top: 3px;
+	top: @header_top_offset;
 	margin-right: 15px;
 }
 
@@ -122,13 +142,13 @@ body{
 
 	#color-palette-thumbs-title{
 		position: relative;
-		top: 3px;
+		top: @header_top_offset;
 		margin-right: 15px;
 	}
 
 	#color-palette-thumbs-ellipsis{
 		position: relative;
-		top: 3px;
+		top: @header_top_offset;
 		margin-left: 10px;
 	}
 
@@ -202,6 +222,16 @@ body{
 
 		.result-image{
 			width: 25%;
+
+			@media screen{
+				@media(max-width: 800px){
+					width: 50%;
+				}
+
+				@media(max-width: 400px){
+					width: 100%;
+				}
+			}
 		}
 
 		&.show-future{
@@ -224,6 +254,16 @@ body{
 
 		.result-image{
 			width: 25%;
+
+			@media screen{
+				@media(max-width: 800px){
+					width: 50%;
+				}
+
+				@media(max-width: 400px){
+					width: 100%;
+				}
+			}
 		}
 
 		.phantom{
@@ -239,6 +279,28 @@ body{
 	}
 }
 
+#loading-screen{
+	position: fixed;
+	background-color: black;
+	opacity: 0;
+	z-index: -1;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	padding-top: 80px;
+	color: white;
+	font-size: 2em;
+	transition: 0.5;
+
+	&.loading{
+		z-index: 90;
+		opacity: 0.8;
+		transition: 0.5s;
+	}
+}
+
 #result-container{
 	margin-top: 80px;
 	margin-left: 1%;
@@ -247,6 +309,16 @@ body{
 		width: 20%;
 		margin-bottom: 1%;
 		text-align: center;
+
+		@media screen{
+			@media(max-width: 800px){
+				width: 25%;
+			}
+
+			@media(max-width: 400px){
+				width: 50%;
+			}
+		}
 
 		.result-image-importance-wrapper{
 			width: 95%;

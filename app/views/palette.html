@@ -5,6 +5,8 @@
 		<button class="pull-right btn-blue" ng-click="choose_palette()">
             <i class="fa fa-paint-brush"></i> Choose this palette
         </button>
+
+        <div class="top-offset text-muted pull-right" id="welcome"><strong>Welcome Kalle</strong>, choose a few colors and proceed</div>
 	</div>
 </div>
 
@@ -15,5 +17,5 @@
 </div>
 
 <div id="load-more-colors">
-	<button class="btn-blue" ng-click="increase_palette_size()" ng-disabled="palette_size >= colors.length"><i class="fa fa-plus"></i> Load more colors</button>
+	<button class="btn-blue" ng-click="increase_palette_size()" ng-disabled="palette_size >= colors.length"><i class="fa fa-plus"></i> More colors</button>
 </div>
