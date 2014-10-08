@@ -14,6 +14,9 @@ Start by running
 ###POST /palette
 
 *Request (JSON):*
+
+(Palette chosen by user)
+
 <pre>
 palette: [
   {
@@ -29,6 +32,9 @@ palette: [
 ###GET /search
 
 *Response (JSON):*
+
+(First set of images)
+
 <pre>
 images: [
   {
@@ -44,6 +50,8 @@ images: [
 </pre>
 
 ##POST /next
+
+(Feedback for images)
 
 *Request (JSON):*
 <pre>
