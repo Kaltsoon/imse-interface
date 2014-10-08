@@ -59,3 +59,60 @@ feedback: [
   ...
 ]
 </pre>
+
+*Response (JSON):*
+
+(The next set of images)
+
+<pre>
+images: [
+  {
+    sequence: 1,
+    src: 'cat.jpg'
+  },
+  {
+    sequence: 2,
+    src: 'dog.jpg'
+  },
+  ...
+]
+</pre>
+
+## POST /future
+
+*Request (JSON):*
+
+(Current feedback)
+
+<pre>
+feedback: [
+  {
+   sequence: 1,
+   value: 10
+  },
+  {
+    sequence: 2,
+    value: 4
+  },
+  ...
+]
+</pre>
+
+*Response (JSON):*
+
+(Future images)
+
+<pre>
+images: [
+  {
+    sequence: 1,
+    src: 'cat.jpg'
+  },
+  {
+    sequence: 2,
+    src: 'dog.jpg'
+  },
+  ...
+]
+</pre>
+
