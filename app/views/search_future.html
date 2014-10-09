@@ -22,16 +22,16 @@
     <div id="current-results-container" ng-class="{ 'show-future': show_future }">
         <h2>Results</h2>
         <div masonry preserve-order id="result-container">
-            <div class="masonry-brick result-image" ng-repeat="result in results" ng-mouseenter="show_future()" ng-mouseleave="hide_future()">
+            <div class="masonry-brick result-image" ng-repeat="result in results">
                 <div style="width: 95%">
                     <img ng-src="{{ result.src }}" alt="A masonry brick">
-                    
+
                     <div class="result-image-importance-wrapper">
                         <div class="result-image-importance-value" ng-class="{ 'green': result.importance >= 8, 'yellow': result.importance >= 4 && result.importance < 8, 'red': result.importance < 4 }">{{result.importance}}</div>
                     </div>
-                    
+
                     <div class="result-image-importance">
-                        <div ui-slider="{min: 0, max: 10, range: 'min'}" update="update_future" ng-model="result.importance"></div>
+                        <div ui-slider="{min: 0, max: 10, range: 'min'}" ng-model="result.importance"></div>
                     </div>
                 </div>
             </div>
@@ -40,6 +40,7 @@
 
     <div id="future-results-container" ng-show="show_future">
         <h2>The future</h2>
+
         <div class="phantom">
             <div masonry preserve-order id="result-container">
                 <div class="masonry-brick result-image" ng-repeat="result in future">
@@ -47,7 +48,11 @@
                         <img ng-src="{{ result.src }}" alt="A masonry brick">
                     </div>
                 </div>
-            </div masonry>
+            </div>
         </div>
+
+				<p class="text-center" style="margin-top: 20px">
+					<button class="btn-blue" ng-click="update_future()"><i class="fa fa-refresh"></i> Update</button>
+				</p>
     </div>
 </div>

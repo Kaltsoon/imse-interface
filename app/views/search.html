@@ -22,14 +22,14 @@
     <div class="masonry-brick result-image" ng-repeat="result in results">
     	<div style="width: 95%">
             <img ng-src="{{ result.src }}" alt="A masonry brick">
-            
+
             <div class="result-image-importance-wrapper">
                 <div class="result-image-importance-value" ng-class="{ 'green': result.importance >= 8, 'yellow': result.importance >= 4 && result.importance < 8, 'red': result.importance < 4 }">{{result.importance}}</div>
             </div>
-            
+
             <div class="result-image-importance">
             	<div ui-slider="{min: 0, max: 10, range: 'min'}" ng-model="result.importance"></div>
             </div>
     	</div>
     </div>
-</div masonry>
+</div>

@@ -1,11 +1,15 @@
-ImageSearchApp.controller('SearchFutureController', ['$scope', '$http', function($scope, $http){
+ImageSearchApp.controller('SearchFutureController', ['$scope', 'API', function($scope, API){
+	/*API.search().done(function(results){
+		$scope.results = results;
+	});*/
+
 	$scope.iteration = 1;
 	$scope.palette = $scope.$parent.palette;
 	$scope.show_future = true;
 
 	function generate_results(){
 		var results = [];
-		
+
 		for(var i=0; i<10; i++){
 			results.push({
 				src: 'img/' + Math.round(Math.ceil(Math.random() * 5)) + '.jpg',
@@ -17,6 +21,10 @@ ImageSearchApp.controller('SearchFutureController', ['$scope', '$http', function
 	}
 
 	$scope.update_future = function(){
+		/*API.future($scope.results).done(function(future){
+			$scope.future = future;
+		});*/
+
 		$scope.future = generate_results();
 	}
 
@@ -25,6 +33,11 @@ ImageSearchApp.controller('SearchFutureController', ['$scope', '$http', function
 
 	$scope.next = function(){
 		$scope.iteration++;
+
+		/*API.next($scope.results).done(function(results){
+				$scope.results = results;
+		});*/
+
 		$scope.results = generate_results();
 	}
 }]);
