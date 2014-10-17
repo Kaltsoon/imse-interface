@@ -1,16 +1,35 @@
 ImageSearchApp.service('API', ['$http', function($http){
 	var _public = {};
 
+	var location = '';
+
 	_public.send_palatte = function(colors){
+		var formatted_colors = $.map(colors, function(color){
+			return color.hex;
+		});
+
 		var callback = function(){};
 
-		$http({
-			method: 'POST',
-			url: '/palette',
-			data: angular.toJson(colors)
+		$http.get(location + '/firstround', {
+			params: {
+				colors: angular.toJson(formatted_colors),
+				no_of_images: 12
+			}
 		})
-		.success(function(){
-			callback();
+		.success(function(images){
+			images = angular.fromJson(images);
+
+			var formatted_images = [];
+
+			images.forEach(function(image){
+				formatted_images.push({
+					src: location + '/media/im' + ( parseInt(image) + 1 ) + '.jpg',
+					sequence: parseInt(image),
+					importance: 0
+				});
+			});
+
+			callback(formatted_images);
 		});
 
 		return {
@@ -20,50 +39,26 @@ ImageSearchApp.service('API', ['$http', function($http){
 		}
 	}
 
-	_public.search = function(){
-		var callback = function(images){};
+	_public.next = function(feedback, finished){
+		var callback = function(){};
 
-		$http({
-			method: 'GET',
-			url: '/search'
-		})
-		.success(function(images){
-			callback(images);
+		var feedback_sequences = $.map(feedback, function(item){
+			return item.sequence;
 		});
 
-		return{
-			done: function(suc){
-				callback = suc;
-			}
-		}
-	}
-
-	_public.next = function(feedback){
-		var callback = function(images){};
-
-		$http({
-			method: 'POST',
-			url: '/next',
-			data: angular.toJson(feedback)
-		})
-		.success(function(images){
-			callback(images);
+		var feedback_values = $.map(feedback, function(item){
+			return item.importance / 10;
 		});
 
-		return {
-			done: function(suc){
-				callback = suc;
+		$http.get(location + '/search', {
+			params: {
+				algorithm: 'GP-SOM',
+				imagesnumiteration: feedback.length,
+				category: 'none',
+				feedback: angular.toJson(feedback_values),
+				feedback_indicies: angular.toJson(feedback_sequences),
+				finished: finished
 			}
-		}
-	}
-
-	_public.future = function(feedback){
-		var callback = function(images){};
-
-		$http({
-			method: 'POST',
-			url: '/future',
-			data: angular.toJson(feedback)
 		})
 		.success(function(images){
 			callback(images);

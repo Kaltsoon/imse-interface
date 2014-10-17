@@ -1,5 +1,6 @@
-ImageSearchApp.controller('SearchController', ['$scope', '$timeout', 'API', function($scope, $timeout, API){
-	/*API.search().done(function(images){
+ImageSearchApp.controller('SearchController', ['$scope', '$timeout', '$location', 'API', function($scope, $timeout, $location, API){
+	/*API.send_palette($scope.$parent.palette)
+	.done(function(images){
 		$scope.results = images;
 	});*/
 
@@ -26,12 +27,20 @@ ImageSearchApp.controller('SearchController', ['$scope', '$timeout', 'API', func
 	generate_results();
 	$scope.loading = true;
 
+	$scope.done = function(){
+		/*API.next($scope.results, true).done(function(){
+			$location.path('/palette');
+		});*/
+
+		$location.path('/palette');
+	}
+
 	$scope.next = function(){
 		$scope.iteration++;
 		$scope.loading = true;
 
-		/*API.next($scope.results).done(function(results){
-				$scope.results = results;
+		/*API.next($scope.results, false).done(function(images){
+				$scope.results = images;
 				$scope.loading = false;
 		});*/
 

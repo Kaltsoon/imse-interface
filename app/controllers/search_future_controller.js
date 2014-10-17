@@ -21,7 +21,7 @@ ImageSearchApp.controller('SearchFutureController', ['$scope', 'API', function($
 	}
 
 	$scope.update_future = function(){
-		/*API.future($scope.results).done(function(future){
+		/*API.search($scope.results).done(function(future){
 			$scope.future = future;
 		});*/
 
